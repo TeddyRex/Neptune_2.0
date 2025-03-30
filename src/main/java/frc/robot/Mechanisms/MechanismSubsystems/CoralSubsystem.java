@@ -9,12 +9,14 @@ import com.ctre.phoenix6.controls.MusicTone;
 import com.ctre.phoenix6.hardware.TalonFXS;
 import com.ctre.phoenix6.signals.InvertedValue;
 
+import dev.doglog.DogLog;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 public class CoralSubsystem extends SubsystemBase {
-  private final TalonFXS m_coralTopMotor = new TalonFXS(0, "Galigma");
-  private final TalonFXS m_coralButtMotor = new TalonFXS(0, "Galigma");
+  private final TalonFXS m_coralTopMotor = new TalonFXS(0, Constants.GALIGMA_BUS);
+  private final TalonFXS m_coralButtMotor = new TalonFXS(0, Constants.GALIGMA_BUS);
   // Jeremiah is a butt motor  | TalonFXS config and follower object
   private final TalonFXSConfiguration m_fxsconfig = new TalonFXSConfiguration();
   private final Follower followTopMotor = new Follower(0, true);
@@ -29,6 +31,9 @@ public class CoralSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
+    
+    //* HAVEN'T TESTED !!! MAY NOT WORK !!! */
+
     // In Laymen's terms: "is ts connected to the bot fr gang ong ong?"
     if (!m_coralTopMotor.isConnected(3) && !m_coralButtMotor.isConnected(3)) {
       MusicTone m_tone = new MusicTone(1000.0); // I am NOT doing all that shit with frequency, not yet. hold your horses fellas.

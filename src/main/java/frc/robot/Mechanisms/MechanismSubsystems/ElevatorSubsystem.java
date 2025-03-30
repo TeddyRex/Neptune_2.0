@@ -15,13 +15,10 @@ import frc.robot.Libraries.HardwareConfigs;
 
 public class ElevatorSubsystem extends SubsystemBase {
  /* Left and Right Motors */
-  private TalonFX m_elevatorMotor = new TalonFX(0, "Galigma");
+  private TalonFX m_elevatorMotor = new TalonFX(0, Constants.GALIGMA_BUS);
   private PIDController pidController = new PIDController(0, 0, 0);
   HardwareConfigs m_hardwareConfigs = new HardwareConfigs();
 
-  //private Follower m_follower = new Follower(LEFT_MOTOR_ID, true);
-  private double speed = 0.5;
-  private double THRESHOLD = 5.0;
   private double LOWER_LIMIT = Constants.Elevator.MIN;
   private double UPPER_LIMIT = Constants.Elevator.MAX;
   private double lastAction = System.currentTimeMillis();
@@ -37,7 +34,11 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
-    
+    // This method will be called once per scheduler 
+    // Constantly changes the motorOutput depending on the relative encoder position.
+    // Change the encoder position within commands (probably) this might just make it easier
+    double motorOutput = pidController.calculate(m_elevatorMotor.getPosition().getValueAsDouble());
+    m_elevatorMotor.set(motorOutput);
+
   }
 }
