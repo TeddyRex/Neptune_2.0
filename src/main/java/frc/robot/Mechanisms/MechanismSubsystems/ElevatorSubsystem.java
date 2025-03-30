@@ -23,8 +23,6 @@ public class ElevatorSubsystem extends SubsystemBase {
   private double UPPER_LIMIT = Constants.Elevator.MAX;
   private double lastAction = System.currentTimeMillis();
 
-  double eMotorPosition = 0.0;
-
   public ElevatorSubsystem() {
     // Load your TalonFX drive config (PID, current limit, etc.)
     var m_elevatorMotorConfig = m_elevatorMotor.getConfigurator();
@@ -37,8 +35,21 @@ public class ElevatorSubsystem extends SubsystemBase {
     // This method will be called once per scheduler 
     // Constantly changes the motorOutput depending on the relative encoder position.
     // Change the encoder position within commands (probably) this might just make it easier
-    double motorOutput = pidController.calculate(m_elevatorMotor.getPosition().getValueAsDouble());
+    double motorOutput = pidController.calculate(pidController.getSetpoint());
     m_elevatorMotor.set(motorOutput);
+  }
 
+/*
+ * @param The level for coral, choose between (0, 1, 2, 3)
+ * @param ex: 0 -> L1_POSITION 
+ */
+  public void setLevelSetpoint(int elevatorLevel) {
+    double[] level = {
+      Constants.Elevator.L1_POSITION,
+      Constants.Elevator.L2_POSITION,
+      Constants.Elevator.L3_POSITION,
+      Constants.Elevator.L4_POSITION
+    };
+    pidController.setSetpoint(level[elevatorLevel]);
   }
 }

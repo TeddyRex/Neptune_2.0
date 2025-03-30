@@ -28,7 +28,7 @@ public final class Constants {
     public static final class Swerve {
         public static final int pigeonID = 1;
 
-        public static final COTSTalonFXSwerveConstants chosenModule =  //TODO: This must be tuned to specific robot
+        public static final COTSTalonFXSwerveConstants chosenModule =
         COTSTalonFXSwerveConstants.SDS.MK4i.KrakenX60(COTSTalonFXSwerveConstants.SDS.MK4i.driveRatios.L2);
 
         /* Drivetrain Constants */
@@ -154,10 +154,10 @@ public final class Constants {
         public static final double MAX = 197.0; 
         public static final double MIN = 7;
         // get the position for the following 
-        public static final double L1_POSITION = 30;
-        public static final double L2_POSITION = 85;
-        public static final double L3_POSITION = 140;
-        public static final double L4_POSITION = 180;
+        public static final double L1_POSITION = 30.0;
+        public static final double L2_POSITION = 85.0;
+        public static final double L3_POSITION = 140.0;
+        public static final double L4_POSITION = 180.0;
 
         public static final double KP = 0.5;
         public static final double KI = 0.01;
