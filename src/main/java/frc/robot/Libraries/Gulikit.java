@@ -3,6 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.Libraries;
+import java.util.function.BooleanSupplier;
+
 import edu.wpi.first.wpilibj.Joystick;
 
 public class Gulikit implements ControllerInterface {
@@ -48,7 +50,7 @@ public class Gulikit implements ControllerInterface {
         return joystick.getPOV();
     }
 
-    public boolean getButtonA() {
+    public BooleanSupplier getButtonA() {
         return getButton(BUTTON_A);
     }
 
